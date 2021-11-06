@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class TrelloUiTest{
-
     private static final Logger log = Logger.getLogger(TrelloUiTest.class);
     private static final String USER_PASSWORD = UtilsMethod.getValue("USER_PASSWORD");
     private static final String USER_EMAIL = UtilsMethod.getValue("USER_EMAIL");
