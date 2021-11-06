@@ -13,6 +13,6 @@ public class UtilsHelper {
         Calendar c = Calendar.getInstance();
         c.add(Calendar.DATE, 1);
         dt = sdf.format(c.getTime());
-        return dt.toString();
+        return dt;
     }
 }
