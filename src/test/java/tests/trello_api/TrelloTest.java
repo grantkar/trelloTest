@@ -9,11 +9,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class TrelloTest extends BaseTest {
-    private Constants constants = new Constants();
-    private String apiKey = constants.getTRELLO_API_KEY();
-    private String apiToken = constants.getTRELLO_API_TOKEN();
+    private final String apiKey = Constants.TRELLO_API_KEY;
+    private final String apiToken = Constants.TRELLO_API_TOKEN;
 
-    private BaseUri base = new BaseUriTrelloImpl();
+    private final BaseUri base = new BaseUriTrelloImpl();
 
     @BeforeClass
     public void setup() {

@@ -14,12 +14,13 @@ import static constants.Constants.EndPoint.*;
 public class TrelloBoardManagerImpl implements TrelloBoardManager {
 
     private Response response;
+    private static final String CONTENT = "application/json";
 
     @Override
     public Response createBoard(Map<String, String> params) {
         JSONObject object = new JSONObject(params);
         object.put("name", "KanbanTool");
-        response = RestAssured.given().contentType("application/json")
+        response = RestAssured.given().contentType(CONTENT)
                 .body(object.toString()).when().post(TRELLO_ENDPOINT_CREATE_A_BOARD)
                 .then().log().body().extract().response();
         return response;
@@ -30,7 +31,7 @@ public class TrelloBoardManagerImpl implements TrelloBoardManager {
         JSONObject object = new JSONObject(params);
         object.put("name", name);
         object.put("idBoard", idBoard);
-        response = RestAssured.given().contentType("application/json")
+        response = RestAssured.given().contentType(CONTENT)
                 .body(object.toString()).when().post(TRELLO_ENDPOINT_CREATE_A_LIST)
                 .then().log().body().extract().response();
         return response;
@@ -41,7 +42,7 @@ public class TrelloBoardManagerImpl implements TrelloBoardManager {
         JSONObject object = new JSONObject(params);
         object.put("name", "Карточка для изучения API");
         object.put("idList", idList);
-        response = RestAssured.given().contentType("application/json")
+        response = RestAssured.given().contentType(CONTENT)
                 .body(object.toString()).when().post(TRELLO_ENDPOINT_CREATE_A_CARD)
                 .then().log().body().extract().response();
         return response;
@@ -65,7 +66,7 @@ public class TrelloBoardManagerImpl implements TrelloBoardManager {
     public void addDueToCard(Map<String, String> params, String idCard) {
         JSONObject object = new JSONObject(params);
         object.put("due", UtilsHelper.getDateTomorrow());
-        response = RestAssured.given().contentType("application/json")
+        response = RestAssured.given().contentType(CONTENT)
                 .body(object.toString()).when().put(TRELLO_ENDPOINT_CREATE_A_CARD + "/" + idCard)
                 .then().log().body().extract().response();
     }
@@ -74,7 +75,7 @@ public class TrelloBoardManagerImpl implements TrelloBoardManager {
     public void addDescriptionToCard(Map<String, String> params, String idCard) {
         JSONObject object = new JSONObject(params);
         object.put("desc", "Тут будет отмечаться прогресс обучения");
-        response = RestAssured.given().contentType("application/json")
+        response = RestAssured.given().contentType(CONTENT)
                 .body(object.toString()).when().put(TRELLO_ENDPOINT_CREATE_A_CARD + "/" + idCard)
                 .then().log().body().extract().response();
     }
